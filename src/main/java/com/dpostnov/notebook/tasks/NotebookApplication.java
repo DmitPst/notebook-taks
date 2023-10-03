@@ -1,4 +1,4 @@
-package com.dpostnov.notebook;
+package com.dpostnov.notebook.tasks;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
