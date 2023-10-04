@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: microservice-task
+
+  data:
+    mongodb:
+      uri: mongodb://tasksuser:qazwsx@localhost:27017/tasks-db
+      database: tasks-db
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
