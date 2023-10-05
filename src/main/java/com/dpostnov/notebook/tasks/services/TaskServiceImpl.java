@@ -31,16 +31,21 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public Task update(Task task) {
-        return null;
+        return taskRepository.save(task);
     }
 
     @Override
     public boolean delete(String id) {
+        Optional<Task> byId = taskRepository.findById(id);
+        if (byId.isPresent()) {
+            taskRepository.delete(byId.get());
+            return true;
+        }
         return false;
     }
 
     @Override
     public Task save(Task task) {
-        return null;
+        return taskRepository.save(task);
     }
 }

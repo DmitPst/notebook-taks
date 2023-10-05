@@ -5,10 +5,7 @@ import com.dpostnov.notebook.tasks.services.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +29,22 @@ public class TaskController {
 
     @GetMapping("/findById")
     public ResponseEntity<Task> findById(@RequestParam String id) {
-        return taskService.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return taskService.findById(id).map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Task> save(@RequestBody Task task) {
+        Task save = taskService.save(task);
+        return new ResponseEntity<>(save, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> delete(@RequestParam String id) {
+        boolean deleted = taskService.delete(id);
+        if (deleted)
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 }
