@@ -15,4 +15,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Task {
     private String id;
     private String name;
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
